@@ -1,0 +1,43 @@
+<div class="container login-form">
+  <form action="/notes/getAllNOtes" method="post">
+    <h2 class="text-center">Notes</h2>
+    <div class="form-group" style="width:500px;">
+      <input type="text" #titleName="ngModel" [(ngModel)]="title" name="title" class="form-control" placeholder="Title" required>
+      <span *ngIf="titleName.errors?.required" class="text-danger">*Required</span>
+    </div>
+    <div class="form-group">
+      <input type="text" #desc="ngModel" [(ngModel)]="description" name="description" class="form-control" placeholder="Description"
+        required>
+        <span *ngIf="desc.errors?.required" class="text-danger">*Required</span>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <button type="button" class="btn btn-success" (click)="addNote(title,description)" [disabled]="titleName.errors?.required || desc.errors?.required">Add Note</button>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Sr. No</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Edit Options</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let note of notes;let i =index" >
+          <td>{{i}}</td>
+          <td><input type="text" [(ngModel)]="note.title" name="title-{{i}}"></td>
+          <td><textarea type="text" [(ngModel)]="note.description" name="description-{{i}}"></textarea></td>
+          <td><button type="button" class="btn btn-primary" style="margin-right: 5px;"
+              (click)="updateNote(note)">Update</button>
+            <button type="button" class="btn btn-danger" style="margin-right: 5px;"
+              (click)="deleteNote(note)">Delete</button></td>
+        </tr>
+<tr *ngIf="!notes || notes.length==0" colspan="4"><h3>No notes to display</h3></tr>
+      </tbody>
+    </table>
+  </form>
+  <p class="text-center"><a (click)="getNotes()">Refresh Notes</a></p>
+</div>

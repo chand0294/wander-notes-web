@@ -1,0 +1,20 @@
+<nav class="navbar navbar-inverse" *ngIf="loginSuccess">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Wander Notes</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a>Hi, <span>{{user}}</span></a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div style="max-height: 455px;overflow-y: scroll;min-height: 455px;">
+  <router-outlet></router-outlet>
+</div>
+<footer class="page-footer font-small blue" *ngIf="loginSuccess" style="background: black;height: 50px;position: relative;
+margin-bottom: 0px;">
+  <div class="footer-copyright text-center py-3">Wander © 2019 Copyright:
+    <a href="https://www.wander.today/">https://www.wander.today</a>
+  </div>
+</footer>
